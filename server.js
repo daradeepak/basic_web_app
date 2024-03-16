@@ -49,77 +49,77 @@ app.get('/users', (req, res) => {
             return console.error('Error querying database:', err.message);
         }
         res.send(`
-           <!DOCTYPE html>
-<html>
-<head>
-    <title>User Data</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>User Data</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f0f0f0;
+                    margin: 0;
+                    padding: 0;
+                }
+                
+                h1 {
+                    text-align: center;
+                    margin-top: 20px;
+                    margin-bottom: 30px;
+                    color: #333;
+                }
+                
+                table {
+                    width: 80%;
+                    margin: 0 auto;
+                    border-collapse: collapse;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    background-color: #fff;
+                }
+                
+                th, td {
+                    padding: 10px;
+                    text-align: left;
+                }
+                
+                th {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+                
+                tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
+                
+                tr:hover {
+                    background-color: #ddd;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>User Data</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Date of Birth</th>
+                </tr>
+                ${rows.map(row => `
+                    <tr>
+                        <td>${row.id}</td>
+                        <td>${row.name}</td>
+                        <td>${row.email}</td>
+                        <td>${row.age}</td>
+                        <td>${row.dob}</td>
+                    </tr>
+                `).join('')}
+            </table>
+        </body>
+        </html>
         
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            margin-bottom: 30px;
-            color: #333;
-        }
-        
-        table {
-            width: 80%;
-            margin: 0 auto;
-            border-collapse: collapse;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-        
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        
-        tr:hover {
-            background-color: #ddd;
-        }
-    </style>
-</head>
-<body>
-    <h1>User Data</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Age</th>
-            <th>Date of Birth</th>
-        </tr>
-        ${rows.map(row => `
-            <tr>
-                <td>${row.id}</td>
-                <td>${row.name}</td>
-                <td>${row.email}</td>
-                <td>${row.age}</td>
-                <td>${row.dob}</td>
-            </tr>
-        `).join('')}
-    </table>
-</body>
-</html>
-
         `);
     });
 });
